@@ -1,0 +1,155 @@
+hdfs dfs -mkdir -p /user/root
+
+
+docker cp mapper.py 436fdd2b42be:/tmp
+docker cp reducer.py 436fdd2b42be:/tmp
+docker cp text.txt 436fdd2b42be:/tmp
+
+hdfs dfs -mkdir /user/root/input
+hdfs dfs -put text.txt /user/root/input
+
+for each 
+1) docker exec -it nodemanager bash
+2) docker exec -it historyserver bash
+3) docker exec -it resourcemanager bash
+4) docker exec -it namenode bash
+5) docker exec -it datanode bash
+echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list
+echo "deb http://archive.debian.org/debian-security/ stretch/updates main" >> /etc/apt/sources.list
+apt-get update -o Acquire::Check-Valid-Until=false
+apt-get install python
+
+root@61c78dcbafe5:/# python --version
+Python 2.7.13
+
+
+$HADOOP_HOME/bin/hadoop  \
+jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming*.jar \
+-files /tmp/mapper.py,/tmp/reducer.py \
+-input /user/root/input  \
+-output /user/root/output5   \
+-mapper "python mapper.py"  \
+-reducer "python reducer.py"
+
+
+
+
+hdfs dfs -cat /user/root/output5/*
+
+
+
+$HADOOP_HOME/bin/hadoop  \
+jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming*.jar \
+-files /tmp/mapper1.py,/tmp/reducer1.py \
+-input /root/part1/input  \
+-output /root/part1/output1   \
+-mapper "python3 mapper1.py"  \
+-reducer "python3 reducer1.py"
+
+-----------------------------------------------------------------------------------
+PARTE 1 MIMMO: 
+hdfs dfs -ls /root
+# hdfs dfs -ls /root/part1
+hdfs dfs -ls /root/part1/input >> csv files
+
+$HADOOP_HOME/bin/hadoop  jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming*.jar -files /tmp/mapper1.py,/tmp/reducer1.py -input /root/part1/input  -output /root/part1/output1   -mapper "python3 mapper1.py"  -reducer "python3 reducer1.py"
+
+
+root@77a196b32263:/# hdfs dfs -cat /root/part1/output1/*
+2025-10-10 09:42:34,320 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+-1,20  	 SPARSE 	 1
+-10,0  	 SPARSE 	 1
+-10,26  	 SPARSE 	 1
+-3,12  	 SPARSE 	 1
+-3,28  	 SPARSE 	 1
+-3,29  	 SPARSE 	 1
+-3,7  	 SPARSE 	 1
+-4,-4  	 SPARSE 	 1
+-4,2  	 SPARSE 	 1
+-5,22  	 SPARSE 	 1
+-6,-9  	 SPARSE 	 1
+-6,12  	 SPARSE 	 1
+-8,-4  	 SPARSE 	 1
+-8,18  	 SPARSE 	 1
+-9,25  	 SPARSE 	 1
+-9,29  	 SPARSE 	 1
+-9,5  	 SPARSE 	 1
+0,0  	 SPARSE 	 1
+0,1  	 DENSE 	 10
+0,2  	 DENSE 	 6
+0,3  	 SPARSE 	 1
+0,4  	 SPARSE 	 1
+1,0  	 DENSE 	 6
+1,1  	 DENSE 	 61
+1,13  	 SPARSE 	 1
+1,2  	 DENSE 	 58
+1,3  	 DENSE 	 7
+10,-8  	 SPARSE 	 1
+10,0  	 SPARSE 	 1
+10,10  	 DENSE 	 61
+10,11  	 SPARSE 	 1
+10,8  	 DENSE 	 10
+10,9  	 DENSE 	 64
+11,-2  	 SPARSE 	 1
+11,0  	 SPARSE 	 1
+11,10  	 DENSE 	 12
+11,14  	 SPARSE 	 1
+11,9  	 DENSE 	 7
+12,2  	 SPARSE 	 1
+13,10  	 SPARSE 	 1
+15,12  	 SPARSE 	 1
+16,-10  	 SPARSE 	 1
+16,0  	 SPARSE 	 1
+16,1  	 DENSE 	 9
+16,2  	 DENSE 	 4
+17,-1  	 SPARSE 	 1
+17,0  	 DENSE 	 5
+17,1  	 DENSE 	 61
+17,14  	 SPARSE 	 1
+17,2  	 DENSE 	 80
+17,3  	 DENSE 	 3
+17,4  	 SPARSE 	 1
+18,0  	 DENSE 	 3
+18,1  	 DENSE 	 50
+18,2  	 DENSE 	 71
+18,3  	 DENSE 	 11
+18,5  	 SPARSE 	 1
+19,0  	 SPARSE 	 1
+19,1  	 DENSE 	 11
+19,12  	 SPARSE 	 1
+19,2  	 DENSE 	 6
+2,0  	 DENSE 	 6
+2,1  	 DENSE 	 70
+2,2  	 DENSE 	 69
+2,20  	 SPARSE 	 1
+2,3  	 DENSE 	 5
+20,27  	 SPARSE 	 1
+20,4  	 SPARSE 	 1
+21,11  	 SPARSE 	 1
+21,21  	 SPARSE 	 1
+23,24  	 SPARSE 	 1
+25,12  	 SPARSE 	 1
+25,18  	 SPARSE 	 1
+26,17  	 SPARSE 	 1
+27,10  	 SPARSE 	 1
+28,-6  	 SPARSE 	 1
+28,7  	 SPARSE 	 1
+3,1  	 DENSE 	 9
+3,2  	 DENSE 	 7
+3,6  	 SPARSE 	 1
+4,-1  	 SPARSE 	 1
+5,16  	 SPARSE 	 1
+5,27  	 SPARSE 	 1
+8,10  	 DENSE 	 8
+8,9  	 DENSE 	 8
+9,10  	 DENSE 	 66
+9,11  	 DENSE 	 11
+9,8  	 DENSE 	 14
+9,9  	 DENSE 	 55
+
+
+
+ls /tmp/
+hadoop-root-namenode.pid			       mapper1.py
+hsperfdata_root					       reducer1.py
+jetty-0.0.0.0-9870-hdfs-_-any-6840077614578461213.dir
