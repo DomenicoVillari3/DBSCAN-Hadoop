@@ -34,4 +34,5 @@ if current_cell is not None:
         cell_type = "DENSE"
     else:
         cell_type = "SPARSE"
-    print(f"{current_cell}\t{cell_type}\t{count}")
+    print("{}\t{}\t{}".format(current_cell, cell_type, count))
+
