@@ -32,5 +32,6 @@ for line in sys.stdin:
     #cell_id = (cell_x, cell_y,point_id)
     cell_id = str(cell_x)+","+str(cell_y)
     
-    print("{},{}\t{}".format(cell_x, cell_y, 1))
+    #print("{},{}\t{}".format(cell_x, cell_y, 1))
+    print(cell_id,"\t 1")
 

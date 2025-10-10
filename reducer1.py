@@ -23,7 +23,8 @@ for line in sys.stdin:
                 cell_type = "DENSE"
             else:
                 cell_type = "SPARSE"
-            print(f"{current_cell}\t{cell_type}\t{count}")
+            #print(f"{current_cell}\t{cell_type}\t{count}")
+            print(current_cell,"\t",cell_type,"\t",count)
         
         current_cell = cell
         count = val
@@ -34,5 +35,7 @@ if current_cell is not None:
         cell_type = "DENSE"
     else:
         cell_type = "SPARSE"
-    print("{}\t{}\t{}".format(current_cell, cell_type, count))
+    #print("{}\t{}\t{}".format(current_cell, cell_type, count))
+    print(current_cell,"\t",cell_type,"\t",count)
+
 
