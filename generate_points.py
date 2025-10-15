@@ -3,7 +3,7 @@ import random
 import csv
 
 # Numero totale di punti (inclusi gli outlier)
-TOTAL_POINTS = 1000
+TOTAL_POINTS = 5000
 
 # Percentuale di outlier
 OUTLIER_RATIO = 0.05  # 5%
@@ -12,7 +12,9 @@ OUTLIER_RATIO = 0.05  # 5%
 centers = [
     (1.0, 1.0),
     (5.0, 5.0),
-    (9.0, 1.0)
+    (9.0, 1.0),
+    (5.0, 9.0),
+    (1.0, 5.0)
 ]
 
 # Deviazione standard (quanto sono “sparpagliati” i punti attorno al centro)
@@ -25,7 +27,7 @@ num_normal = TOTAL_POINTS - num_outliers
 # --------------------------
 # Scrittura del file
 # --------------------------
-with open("points_with_outliers.csv", "w", newline="") as f:
+with open("points_with_outliers_5.csv", "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerow(["id", "x", "y", "label"])
     
