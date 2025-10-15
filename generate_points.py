@@ -3,7 +3,7 @@ import random
 import csv
 
 # Numero totale di punti (inclusi gli outlier)
-TOTAL_POINTS = 50000
+TOTAL_POINTS = 10000
 
 # Percentuale di outlier
 OUTLIER_RATIO = 0.05  # 5%
